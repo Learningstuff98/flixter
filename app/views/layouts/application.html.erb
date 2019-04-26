@@ -34,14 +34,16 @@
       </div>
     </nav>
   
-
-    <% if user_signed_in? %>
-      <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav_link' %>
-    <% else %>  
-      <%= link_to 'Sign up', new_user_registration_path, class: 'nav_link' %>
-      <%= " or " %>
-      <%= link_to 'Log in', user_session_path, class: 'nav_link' %>
-    <% end %>
+    <div class='make-it-green'>
+      <%= link_to 'Home', root_path %>
+      <% if user_signed_in? %>
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav_link' %>
+      <% else %>  
+        <%= link_to 'Sign up', new_user_registration_path, class: 'nav_link' %>
+        <%= " or " %>
+        <%= link_to 'Log in', user_session_path, class: 'nav_link' %>
+      <% end %>
+    </div>  
 
     <% if notice.present? %>
       <p class="alert alert-info"><%= notice %></p>
