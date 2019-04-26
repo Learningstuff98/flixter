@@ -59,3 +59,13 @@ body {
   font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
   color: #00C122;
 }
+
+.booyah-box {
+  -moz-box-shadow: 1px 1px 2px 0 rgb(41, 38, 38);
+  -webkit-box-shadow: 1px 1px 2px 0 rgb(41, 38, 38);
+  box-shadow: 1px 1px 2px 0 rgb(41, 38, 38);
+  background: rgb(41, 38, 38);
+  border: 1px solid #ccc;
+  border-color: rgb(41, 38, 38);
+  padding: 10px;
+}
