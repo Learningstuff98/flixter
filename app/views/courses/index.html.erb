@@ -5,6 +5,7 @@
   <hr />
 
   <% @courses.each do |course| %>
+  <%= image_tag course.image.url, class: 'img-fluid' if !course.image.url.nil? %>
     <h2 class="text-center">
       <%= link_to course.title, course_path(course) %>
     </h2>

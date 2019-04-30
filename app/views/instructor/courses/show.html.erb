@@ -7,8 +7,11 @@
   <div class="text-center">
     <%= link_to 'Add a new section...', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-lg' %>
   </div>
+  <br />
+  <%= image_tag current_course.image.url, class: 'img-fluid' if !current_course.image.url.nil? %>
 </div>
 <br/>
+
 
 <ul>
   <% current_course.sections.each do |section| %>
