@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 
 .navbar {
   font-family: "Helvetica Neue", Helvetica;
@@ -95,4 +96,41 @@ body {
 .lesson a b {
   font-weight: 100;
   font-size: 30px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.section-li {
+  border: 1px solid;
+  border-color: #00C122;
+  padding: 7px;
+}
+
+.header {
+  font-size: 30px;
+}
+
+.lessons li {
+  background: black;
+  color: #00C122;
+  margin: 10px;
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: 100;
+  padding: 8px;
+  font-size: 20px;
+}
+
+.lesson_link {
+  margin-bottom: 40px;
+  margin-right: 10px;
+}
+
+.lessons li b {
+  font-size: 25px;
+}
+
+.lessons li p {
+  margin: 0;
 }
