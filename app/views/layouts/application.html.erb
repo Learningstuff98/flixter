@@ -32,16 +32,28 @@
       </div>
     </nav>
   
-    <div class='make-it-green'>
-      <%= link_to 'Home', root_path %>
-      <% if user_signed_in? %>
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav_link' %>
-      <% else %>  
-        <%= link_to 'Sign up', new_user_registration_path, class: 'nav_link' %>
-        <%= " or " %>
-        <%= link_to 'Log in', user_session_path, class: 'nav_link' %>
-      <% end %>
-    </div>  
+    <ul class="navbar-nav">
+      <div class='make-it-green'>
+        <%= link_to 'Home', root_path %>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'My Dashboard', dashboard_path, class: 'nav-link' %> 
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav_link' %>
+          </li>
+        <% else %>  
+          <li class="nav-item">
+            <%= link_to 'Sign up', new_user_registration_path, class: 'nav_link' %>
+          </li>
+          <%= " or " %>
+          <li class="nav-item">
+            <%= link_to 'Log in', user_session_path, class: 'nav_link' %>
+          </li>
+        <% end %>
+      </div>  
+    </ul>
+    
 
     <% if notice.present? %>
       <p class="alert alert-info"><%= notice %></p>
