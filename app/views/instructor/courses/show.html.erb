@@ -23,9 +23,14 @@
         <span class='fa fa-ellipsis-v'></span>
         <%= section.title %>
       </div>
+
       <div class='lesson_link'>
-        <%= link_to 'Add new lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
+          Add new Lesson
+        </button>
       </div>
+
       <ul  class='lessons'>
         <% section.lessons.rank(:row_order).each do |lesson| %>
           <li data-update-url="<%= instructor_lesson_path(lesson) %>"> 
@@ -51,21 +56,11 @@
 
 <script>
   $(function() {
-    $('.sections').sortable({
-      update: function( event, ui ) {
-        $.ajax({
-          type: 'PUT',
-          url: ui.item.data('update-url'),
-          dataType: 'json',
-          data: { section: { row_order_position: ui.item.index() } }
-        });
-      }
+    $('.new-lesson-button').click(function() {
+      var lessonUrl = $(event.target).data('lesson-url');
+      $('#newLessonForm').attr('action', lessonUrl);
     });
-  });
-</script>
 
-<script>
-  $(function() {
     $('.lessons').sortable({
       update: function( event, ui ) {
         $.ajax({
@@ -76,7 +71,20 @@
         });
       }
     });
-   });
+
+
+    $('.sections').sortable({
+      update: function( event, ui ) {
+        $.ajax({
+          type: 'PUT',
+          url: ui.item.data('update-url'),
+          dataType: 'json',
+          data: { section: { row_order_position: ui.item.index() } }
+        });
+      }
+    });
+
+  });
 </script>
 
 <!-- Modal -->
@@ -96,6 +104,34 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <%= f.submit "Add This Section", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="newLessonModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="newLessonModelLabel">Add a Lesson</h4>
+      </div>
+      <%= simple_form_for @lesson, url: '#', html: {id:  'newLessonForm'} do |f| %>
+        <div class="modal-body">
+          <%= f.input :title %>
+          <%= f.input :subtitle %>
+          <%= f.input :video %>
+          <br/>
+          <br />
+          <br />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit 'Add this lesson', class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>
