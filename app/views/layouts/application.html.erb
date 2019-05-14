@@ -10,51 +10,50 @@
     <link href="https://vjs.zencdn.net/7.5.4/video-js.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body> 
   
   <div id="flex-content-container">
     <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">Flixter</a>
+      <div class='home-link'>
+        <h2><%= link_to 'Flixter', root_path %></h2>
+      </div> 
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <%= link_to "See All Courses", courses_path, class: 'nav-link' %>
+          <div class='see-all-courses-link'>
+            <%= link_to "See All Courses", courses_path, class: 'nav-link' %>
+          </div>
         </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <ul class="navbar-nav">
+          <div class='make-it-green'>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to 'My Dashboard', dashboard_path, class: 'nav-link' %> 
+              </li>
+              <li class="nav-item">
+                <div class='Log-Out-link'>
+                  <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav_link' %>
+                </div>
+              </li>
+              <% else %>  
+                <li class="nav-item">
+                  <%= link_to 'Sign up', new_user_registration_path, class: 'nav_link' %>
+                </li>
+                <%= " or " %>
+                <li class="nav-item">
+                  <%= link_to 'Log in', user_session_path, class: 'nav_link' %>
+                </li>
+              <% end %>
+          </div>  
+        </ul>
       </div>
     </nav>
   
-    <ul class="navbar-nav">
-      <div class='make-it-green'>
-        <%= link_to 'Home', root_path %>
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'My Dashboard', dashboard_path, class: 'nav-link' %> 
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav_link' %>
-          </li>
-        <% else %>  
-          <li class="nav-item">
-            <%= link_to 'Sign up', new_user_registration_path, class: 'nav_link' %>
-          </li>
-          <%= " or " %>
-          <li class="nav-item">
-            <%= link_to 'Log in', user_session_path, class: 'nav_link' %>
-          </li>
-        <% end %>
-      </div>  
-    </ul>
-    
-
     <% if notice.present? %>
       <p class="alert alert-info"><%= notice %></p>
     <% end %>  
